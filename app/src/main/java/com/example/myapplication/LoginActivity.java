@@ -3,15 +3,29 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.ui.dashboard.ConcreteConnection;
+import com.example.myapplication.ui.dashboard.Connection;
+import com.example.myapplication.ui.dashboard.GetData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText editText;
     private final String blockCharacterSet = "~#^|@$%&*!";
+    private ConcreteConnection connection = new ConcreteConnection();
+    private String account;
+    private String password;
 
     private final InputFilter filter = (source, start, end, dest, dstart, dend) -> {
 
@@ -25,21 +39,42 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button login = this.findViewById(R.id.login);
-        EditText account = this.findViewById(R.id.account);
         editText = (EditText) findViewById(R.id.account);
         editText.setFilters(new InputFilter[] { filter });
 
         login.setOnClickListener(view -> {
-            EditText account1 = LoginActivity.this.findViewById(R.id.account);
-            EditText password = LoginActivity.this.findViewById(R.id.password);
-            if(1==1/*account.getText().toString().equals("user") && password.getText().toString().equals("123456")*/){
-                //Toast.makeText(LoginActivity.this,"帳號密碼正確",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }
-            else{
-                Toast.makeText(LoginActivity.this,"帳號密碼錯誤",Toast.LENGTH_SHORT).show();
-            }
+            EditText accountText = LoginActivity.this.findViewById(R.id.account);
+            EditText passwordText = LoginActivity.this.findViewById(R.id.password);
+            account =String.valueOf(accountText.getText());
+            password =String.valueOf(passwordText.getText());
+            new GetLoginRequest(new ConcreteConnection(),account,password).execute();
+
         });
+    }
+    private class GetLoginRequest extends GetData {
+
+        public GetLoginRequest(Connection j,String ac,String pw) {
+            super(j,"login",ac,pw);
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                if(s.equals("Login Success")){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("account", account);
+                    bundle.putString("password", password);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(s.equals("Login Error!")) {
+                    Toast.makeText(LoginActivity.this,"帳號密碼錯誤",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(LoginActivity.this,"未知的錯誤",Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

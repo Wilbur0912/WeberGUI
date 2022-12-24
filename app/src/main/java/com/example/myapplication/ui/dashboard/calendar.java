@@ -3,37 +3,23 @@ package com.example.myapplication.ui.dashboard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.databinding.FragmentDashboardBinding;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.Calendar;
-import java.util.Date;
 
 public class calendar extends AppCompatActivity {
 
@@ -80,7 +66,7 @@ public class calendar extends AppCompatActivity {
         //Log.d("OuOb", resultMementoList.toString());
         confirm.setOnClickListener(v -> {
             if(!resultCareTaker.hasMemento(selectDate)) {
-                new GetResultData((Connection) new ChartConnection()).execute();
+                new GetResultData((Connection) new ConcreteConnection()).execute();
                 Log.d("OuOb", "getdata");
             } else {
                 ResultMemento memento = resultCareTaker.getMemento(selectDate);
@@ -103,7 +89,7 @@ public class calendar extends AppCompatActivity {
         String date, year, month;
         int day;
         public GetResultData(Connection c) {
-            super(c);
+            super(c,"");
         }
 
         @Override

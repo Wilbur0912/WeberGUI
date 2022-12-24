@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 
@@ -16,13 +15,12 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
-import com.example.myapplication.ui.dashboard.ChartConnection;
+import com.example.myapplication.ui.dashboard.ConcreteConnection;
 import com.example.myapplication.ui.dashboard.Connection;
 import com.example.myapplication.ui.dashboard.GetData;
 import com.example.myapplication.ui.dashboard.calendar;
 import com.example.myapplication.ui.dashboard.watchHistory;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -41,12 +39,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
+
+    //region getbundle Value:account、password
+    private String account ;
+    private String password;
+    //endregion
     Intent calendarIntent;
     public static Intent mainIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle bundle2 = getIntent().getExtras();
+        account = bundle2.getString("account");
+        password = bundle2.getString("password");
+
         super.onCreate(savedInstanceState);
-        new GetChartData(new ChartConnection()).execute();
+        new GetChartData(new ConcreteConnection()).execute();
 
         com.example.myapplication.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -76,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     private class GetChartData extends GetData {
+
         public GetChartData(Connection c) {
-            super(c);
+            super(c,"findall",account);
         }
 
         String date, year, month;
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         int week3 = 0;
         int week4 = 0;
         int week5 = 0;
+
 
 
         @Override

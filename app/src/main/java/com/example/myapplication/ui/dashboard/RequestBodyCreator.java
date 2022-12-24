@@ -14,7 +14,7 @@ public class RequestBodyCreator {
         String url = base_URL +"findAll";
         RequestBody body =new FormBody.Builder()
                 .add("account",account)
-                .add("message",null)
+                .add("message","")
                 .build();
         Request request = new Request.Builder()
                 .url(url)
@@ -58,7 +58,7 @@ public class RequestBodyCreator {
         String url = base_URL + "login";
         RequestBody body =new FormBody.Builder()
                 .add("account",account)
-                .add("message",password)
+                .add("password",password)
                 .build();
         Request request = new Request.Builder()
                 .url(url)
