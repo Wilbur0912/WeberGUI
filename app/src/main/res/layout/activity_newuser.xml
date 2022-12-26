@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="83dp"
         android:layout_marginTop="30dp"
         android:rotationX="0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
@@ -36,7 +36,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="423dp">
+        android:layout_height="233dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="35dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,19 +94,20 @@
                     android:id="@+id/radio_male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:checked="true"
+                    android:text="男" />
 
                 <RadioButton
                     android:id="@+id/radio_female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="女" />
 
             </RadioGroup>
 
             <EditText
                 android:id="@+id/layout_age"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
@@ -117,7 +120,7 @@
 
             <EditText
                 android:id="@+id/layout_address"
-                android:layout_width="match_parent"
+                android:layout_width="307dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
@@ -141,7 +144,7 @@
 
             <EditText
                 android:id="@+id/layout_FamilyID"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
@@ -166,7 +169,7 @@
 
             <EditText
                 android:id="@+id/layout_familyPhone"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
@@ -178,7 +181,7 @@
 
             <EditText
                 android:id="@+id/layout_wristbandName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
@@ -207,7 +210,7 @@
         android:id="@+id/text_back_to_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="return"
         android:textAlignment="center"
         android:textColor="#03A9F4"
         android:textSize="16sp"

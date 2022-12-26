@@ -16,6 +16,8 @@ public class watchHistory extends AppCompatActivity {
     TextView teh;
     TextView teg;
     TextView tep;
+    TextView dataAmountText;
+    int dataAmount;
 
 
     @Override
@@ -23,17 +25,20 @@ public class watchHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.historyresults);
-        Intent myIntent = getIntent();
-        dateString = myIntent.getStringExtra("date");
+        Bundle bundle = getIntent().getExtras();
 
-
-        result = myIntent.getBooleanExtra("result",false);
+        dateString = bundle.getString("date");
+        result = bundle.getBoolean("result",false);
+        dataAmount = bundle.getInt("dataAmount");
 
         teh = findViewById(R.id.textViewhave);
 
         teg = findViewById(R.id.textViewgo);
 
         tep = findViewById(R.id.textViewprobability);
+
+        dataAmountText = findViewById(R.id.textView_show_data_amount);
+        dataAmountText.setText("/"+dataAmount+"筆");
 
         if (!result) {
             teg.setText(getResources().getString(R.string.next_step_check_n));
@@ -52,5 +57,9 @@ public class watchHistory extends AppCompatActivity {
             tep.setText("?");
         }
 
+    }
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 }

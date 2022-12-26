@@ -51,9 +51,19 @@ public class NewUserActivity extends AppCompatActivity {
             String familyName = String.valueOf(familyNameText.getText());
             String familyPhone = String.valueOf(familyPhoneText.getText());
             String wristBandName = String.valueOf(wristbandNameText.getText());
+            if(gender.equals("男")){
+                gender = "male";
+            }else if(gender.equals("女")){
+                gender = "female";
+            }
             NewUserVO vo = new NewUserVO(account,username,password,gender,age,phone,address,familyID,familyName,familyPhone,"sdfdsf",wristBandName);
             try {
-                new NewUserActivity.PostNewUserData(new ConcreteConnection(),"newuser").execute(vo);
+                if(!(username.isEmpty()||account.isEmpty()||password.isEmpty()||gender.isEmpty()||age.isEmpty()||phone.isEmpty()||address.isEmpty()||familyID.isEmpty()||familyName.isEmpty()||familyPhone.isEmpty()||wristBandName.isEmpty())){
+                    new NewUserActivity.PostNewUserData(new ConcreteConnection(),"newuser").execute(vo);
+                }else{
+                    Toast.makeText(NewUserActivity.this,"有欄位未填寫",Toast.LENGTH_SHORT).show();
+                }
+
             }catch (Exception e){
                 Toast.makeText(NewUserActivity.this,"後端異常",Toast.LENGTH_SHORT).show();
             }
