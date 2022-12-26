@@ -5,7 +5,7 @@ public class NewUserVO {
         public final String userName;
         public final String password;
         public final String gender;
-        public final int age;
+        public final String age;
         public final String phone;
         public final String address;
         public final String familyID;
@@ -14,7 +14,7 @@ public class NewUserVO {
         public final String token;
         public final String wristbandName;
 
-    public NewUserVO(String account, String userName, String password, String gender, int age, String phone, String address, String familyID, String familyName, String familyPhone, String token, String wristbandName) {
+    public NewUserVO(String account, String userName, String password, String gender, String age, String phone, String address, String familyID, String familyName, String familyPhone, String token, String wristbandName) {
         this.account = account;
         this.userName = userName;
         this.password = password;

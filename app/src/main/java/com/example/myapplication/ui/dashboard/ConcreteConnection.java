@@ -38,4 +38,15 @@ public class ConcreteConnection implements Connection {
 
         return response.body().source().readUtf8();
     }
+
+    public String connectnewUser(NewUserVO vo) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+
+        Request request = creator.newUserBody(vo);
+        Response response = client.newCall(request).execute();
+
+        return response.body().source().readUtf8();
+    }
 }

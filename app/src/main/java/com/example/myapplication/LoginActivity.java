@@ -3,9 +3,9 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.ui.dashboard.ConcreteConnection;
 import com.example.myapplication.ui.dashboard.Connection;
 import com.example.myapplication.ui.dashboard.GetData;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editText;
@@ -39,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button login = this.findViewById(R.id.login);
+        TextView signInText = this.findViewById(R.id.log2);
         editText = (EditText) findViewById(R.id.account);
         editText.setFilters(new InputFilter[] { filter });
 
@@ -47,14 +42,24 @@ public class LoginActivity extends AppCompatActivity {
             EditText passwordText = LoginActivity.this.findViewById(R.id.password);
             account =String.valueOf(accountText.getText());
             password =String.valueOf(passwordText.getText());
-            new GetLoginRequest(new ConcreteConnection(),account,password).execute();
+            try{
+                new GetLoginRequest(new ConcreteConnection()).execute(account,password);
+            }catch (Exception e){
+                Toast.makeText(LoginActivity.this,"後端異常",Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+        signInText.setOnClickListener(view->{
+            Intent intent = new Intent(LoginActivity.this, NewUserActivity.class);
+            startActivity(intent);
 
         });
     }
     private class GetLoginRequest extends GetData {
 
-        public GetLoginRequest(Connection j,String ac,String pw) {
-            super(j,"login",ac,pw);
+        public GetLoginRequest(Connection j) {
+            super(j,"login");
         }
         @Override
         protected void onPostExecute(String s) {
@@ -73,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                Toast.makeText(LoginActivity.this,"後端異常",Toast.LENGTH_SHORT).show();
             }
         }
     }

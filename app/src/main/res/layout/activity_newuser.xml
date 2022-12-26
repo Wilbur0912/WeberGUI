@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:background="#ffeaee"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:rotationX="0"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="帳號註冊"
+        android:textAlignment="center"
+        android:textColor="#59bb9b"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="423dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/layout_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="使用者名稱"
+                android:inputType="textPersonName"
+                android:maxLength="12"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/layout_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="電子郵件"
+                android:inputType="textEmailAddress"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/layout_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="密碼"
+                android:inputType="textPassword"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioGroup
+                android:id="@+id/radio_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1">
+
+                <RadioButton
+                    android:id="@+id/radio_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton" />
+
+                <RadioButton
+                    android:id="@+id/radio_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/layout_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="年齡"
+                android:inputType="textPersonName"
+                android:maxLength="12"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="地址"
+                android:inputType="textPersonName"
+                android:maxLength="12"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/layout_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="手機號碼"
+                android:inputType="phone"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/layout_FamilyID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="家庭群組ID"
+                android:inputType="textPersonName"
+                android:maxLength="12"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/layout_familyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="家庭群組名稱"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/layout_familyPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="家庭群組電話"
+                android:inputType="phone"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/layout_wristbandName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="手環識別ID"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/button_registing"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Register"
+        android:textAlignment="center"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/text_back_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#03A9F4"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+
+</LinearLayout>

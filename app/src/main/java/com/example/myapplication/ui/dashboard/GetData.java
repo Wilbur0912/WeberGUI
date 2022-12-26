@@ -10,26 +10,26 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressLint("StaticFieldLeak")
-public abstract class GetData extends AsyncTask<Void, String, String> {
+public abstract class GetData extends AsyncTask<Object, String, String> {
     ConcreteConnection connection;
     String type;
-    List<String> params1 = new ArrayList<>();
-    public GetData(Connection j,String t,String...args) {
+
+    public GetData(Connection j,String t) {
         connection = (ConcreteConnection) j;
-        for (String p:args) {
-            params1.add(p);
-        }
+
         type = t;
 
     }
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(Object... params) {
         try {
             switch (type){
                 case "findall":
-                    return connection.connectFindAll(params1.get(0));
+                    return connection.connectFindAll((String) params[0]);
                 case "login":
-                    return connection.connectLogin(params1.get(0), params1.get(1));
+                    return connection.connectLogin((String) params[0], (String) params[1]);
+                case "newuser":
+                    return connection.connectnewUser((NewUserVO) params[0]);
             }
 
         } catch (IOException e) {

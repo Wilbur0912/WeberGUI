@@ -1,12 +1,14 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,6 +32,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         password = bundle2.getString("password");
 
         super.onCreate(savedInstanceState);
-        new GetChartData(new ConcreteConnection()).execute();
+        new GetChartData(new ConcreteConnection()).execute(account);
 
         com.example.myapplication.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -63,18 +66,25 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard)
                 .build();
 
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
-            if (navDestination.getId() == R.id.navigation_dashboard) {
+
+        binding.navView.setOnItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.navigation_dashboard){
                 if (mainIntent == null)
                     mainIntent = MainActivity.this.getIntent();
                 if (calendarIntent == null)
                     calendarIntent = new Intent(MainActivity.this, calendar.class);
+                Bundle accountBundle = new Bundle();
+                accountBundle.putString("account",account);
+                calendarIntent.putExtras(accountBundle);
+                //binding.navView.setSelectedItemId(R.id.navigation_home);
                 startActivity(calendarIntent);
             }
+            return false;
         });
     }
+    
 
     public void openAboutHistory(View view) {
         Intent intent = new Intent(this, watchHistory.class);
@@ -85,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     private class GetChartData extends GetData {
 
         public GetChartData(Connection c) {
-            super(c,"findall",account);
+            super(c,"findall");
         }
 
         String date, year, month;

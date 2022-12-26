@@ -29,9 +29,18 @@
         <entry key="..\:/androidPractice/MyApplication/app/src/main/res/layout/login_main.xml" value="0.175" />
         <entry key="..\:/androidPractice/MyApplication/app/src/main/res/layout/notification.xml" value="0.175" />
         <entry key="..\:/androidPractice/MyApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.175" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/drawable/button.xml" value="0.218" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.218" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.218" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.218" />
         <entry key="..\:/program/WeberGUI/app/src/main/res/layout/activity_login.xml" value="0.2128623188405797" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/layout/activity_main.xml" value="0.2128623188405797" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/layout/activity_newuser.xml" value="0.2128623188405797" />
         <entry key="..\:/program/WeberGUI/app/src/main/res/layout/fragment_dashboard.xml" value="0.2128623188405797" />
         <entry key="..\:/program/WeberGUI/app/src/main/res/layout/fragment_home.xml" value="0.2128623188405797" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/layout/historyresults.xml" value="0.1879432624113475" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/layout/notification.xml" value="0.1879432624113475" />
+        <entry key="..\:/program/WeberGUI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2212962962962963" />
       </map>
     </option>
   </component>
