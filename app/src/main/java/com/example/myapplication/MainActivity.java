@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
-    
+
 
     public void openAboutHistory(View view) {
         Intent intent = new Intent(this, watchHistory.class);
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         int week2 = 0;
         int week3 = 0;
         int week4 = 0;
-        int week5 = 0;
 
 
 
@@ -128,29 +127,28 @@ public class MainActivity extends AppCompatActivity {
                     month = parts[1];
                     day = Integer.parseInt(parts[2]);
                     result = jsonObject1.getBoolean("result");
+                    Log.e("a", String.valueOf(day));
 
                     // Hashmap
-                    if (result && year.equals(thisYear) && month.equals(thisMonth)) {
-                        if (1 <= day && day <= 7) {
+                    if (year.equals(thisYear) && month.equals(thisMonth)) {
+                        if (day >= 1  && day <= 7) {
                             week1 = week1 + 1;
-                        } else if (8 <= day && day <= 14) {
+                        } else if (day >= 8  && day <= 15) {
                             week2 = week2 + 1;
-                        } else if (15 <= day && day <= 21) {
+                        } else if (day >= 16 && day <= 23) {
                             week3 = week3 + 1;
-                        } else if (22 <= day && day <= 28) {
+                        } else if (day >= 24 && day <= 31) {
                             week4 = week4 + 1;
-                        } else if (29 <= day) {
-                            week5 = week5 + 1;
                         }
                     }
                 }
+
                 ArrayList<Entry> yValues = new ArrayList<>();
                 //int a = 1;
                 yValues.add(new Entry(0, week1));
                 yValues.add(new Entry(1, week2));
                 yValues.add(new Entry(2, week3));
                 yValues.add(new Entry(3, week4));
-                //yValues.add(new Entry(4,week5));
                 LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
 
                 set1.setFillAlpha(110);
@@ -159,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 set1.setLineWidth(3f);
                 set1.setCircleColors(Color.parseColor("#59c1c9"));
                 set1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
-                set1.setValueTextSize(15);
+                set1.setValueTextSize(18);
 
                 set1.setValueTextColor(Color.parseColor("#59c1c9"));
                 set1.setCircleRadius(6);//圓點大小
