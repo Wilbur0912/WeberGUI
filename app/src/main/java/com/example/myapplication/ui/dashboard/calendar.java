@@ -82,7 +82,7 @@ public class calendar extends AppCompatActivity {
                 Bundle dateReslutBundle = new Bundle();
                 dateReslutBundle.putString("date", selectDate);
                 dateReslutBundle.putBoolean("result", memento.getSavedResult());
-                dateReslutBundle.putInt("dataAmount",0);
+                dateReslutBundle.putInt("dataAmount",memento.getSavedAmount());
                 intent.putExtras(dateReslutBundle);
                 startActivity(intent);
             }
@@ -102,45 +102,47 @@ public class calendar extends AppCompatActivity {
         public GetResultData(Connection c) {
             super(c,"findall");
         }
-        int dataAmount=0;
+        int dataAmount;
 
         @Override
         protected void onPostExecute(String s) {
 
             try {
-                //JSONObject jsonObject = new JSONObject(s);
                 Log.e("e",s);
-                JSONArray jsonArray  = new JSONArray(s);//jsonObject.getJSONArray("parkinson");
+                JSONArray jsonArray  = new JSONArray(s);
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    date = jsonObject1.getString("date");
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    date = jsonObject.getString("date");
                     String[] time = date.split("T");
                     String[] parts = (time[0]).split("-");
                     year = parts[0];
                     month = parts[1];
                     day = Integer.parseInt(parts[2]);
                     String d = year + "/" + month + "/" + day;
-                    Log.d("ricky_test",jsonObject1.getString("result"));
+                    Log.d("ricky_test",jsonObject.getString("result"));
                     if(d.equals(selectDate)){
                         dataAmount++;
-                        if(jsonObject1.getBoolean("result")){
+                        if(jsonObject.getBoolean("result")){
                             result = true;
                         }
                     }
                 }
+                resultCareTaker.addMemento(selectDate, new ResultMemento(result,dataAmount));
+                ResultMemento memento = resultCareTaker.getMemento(selectDate);
+                Intent intent = new Intent(calendar.this, watchHistory.class);
+                Bundle dateReslutBundle = new Bundle();
+                dateReslutBundle.putString("date", selectDate);
+                dateReslutBundle.putBoolean("result", memento.getSavedResult());
+                Log.e("a", String.valueOf(dataAmount));
+                Log.e("a", String.valueOf(memento.getSavedAmount()));
+                dateReslutBundle.putInt("dataAmount",memento.getSavedAmount());
+                intent.putExtras(dateReslutBundle);
+                startActivity(intent);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            resultCareTaker.addMemento(selectDate, new ResultMemento(result));
-            ResultMemento memento = resultCareTaker.getMemento(selectDate);
-            Intent intent = new Intent(calendar.this, watchHistory.class);
-            Bundle dateReslutBundle = new Bundle();
-            dateReslutBundle.putString("date", selectDate);
-            dateReslutBundle.putBoolean("result", memento.getSavedResult());
-            dateReslutBundle.putInt("dataAmount",dataAmount);
-            intent.putExtras(dateReslutBundle);
-            startActivity(intent);
+
         }
     }
 }
