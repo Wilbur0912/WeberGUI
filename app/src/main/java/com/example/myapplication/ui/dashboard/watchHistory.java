@@ -18,6 +18,7 @@ public class watchHistory extends AppCompatActivity {
     TextView tep;
     TextView dataAmountText;
     int dataAmount;
+    float percentage;
 
 
     @Override
@@ -30,6 +31,7 @@ public class watchHistory extends AppCompatActivity {
         dateString = bundle.getString("date");
         result = bundle.getBoolean("result",false);
         dataAmount = bundle.getInt("dataAmount");
+        percentage= bundle.getFloat("percentage");
 
         teh = findViewById(R.id.textViewhave);
 
@@ -48,7 +50,7 @@ public class watchHistory extends AppCompatActivity {
         } else if(result){
             teh.setText(getResources().getString(R.string.have_pro));
             teh.setTextColor(Color.parseColor("#ff8080"));
-            tep.setText("70%");
+            tep.setText(percentage*100+"%");
             tep.setTextColor(Color.parseColor("#ff8080"));
         }else{
             teh.setText(getResources().getString(R.string.No_data));

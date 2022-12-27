@@ -33,6 +33,8 @@ public class calendar extends AppCompatActivity {
     static LocalDate date;
     static ResultCareTaker resultCareTaker = new ResultCareTaker();
     private String account;
+    private float percentage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -82,6 +84,7 @@ public class calendar extends AppCompatActivity {
                 Bundle dateReslutBundle = new Bundle();
                 dateReslutBundle.putString("date", selectDate);
                 dateReslutBundle.putBoolean("result", memento.getSavedResult());
+                dateReslutBundle.putFloat("percentage", memento.getPercentage());
                 dateReslutBundle.putInt("dataAmount",memento.getSavedAmount());
                 intent.putExtras(dateReslutBundle);
                 startActivity(intent);
@@ -127,13 +130,15 @@ public class calendar extends AppCompatActivity {
                             result = true;
                         }
                     }
+                     percentage = (float) jsonObject.getDouble("percentage");
                 }
-                resultCareTaker.addMemento(selectDate, new ResultMemento(result,dataAmount));
+                resultCareTaker.addMemento(selectDate, new ResultMemento(result,dataAmount,percentage));
                 ResultMemento memento = resultCareTaker.getMemento(selectDate);
                 Intent intent = new Intent(calendar.this, watchHistory.class);
                 Bundle dateReslutBundle = new Bundle();
                 dateReslutBundle.putString("date", selectDate);
                 dateReslutBundle.putBoolean("result", memento.getSavedResult());
+                dateReslutBundle.putFloat("percentage", memento.getPercentage());
                 Log.e("a", String.valueOf(dataAmount));
                 Log.e("a", String.valueOf(memento.getSavedAmount()));
                 dateReslutBundle.putInt("dataAmount",memento.getSavedAmount());
